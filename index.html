@@ -4,30 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>A$HTECH - Your Electronic Dream</title>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js">
+  </script>
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family: "Poppins", sans-serif; }
-    .navbar-custom { background-color:#1f2a36; padding:15px 20px; display:flex; justify-content:space-between; align-items:center; }
+   { margin:0; padding:0; box-sizing:border-box; font-family: "Poppins", sans-serif; }
+    .navbar-custom { background-color:#1f2a36; padding:15px 20px; }
     .navbar-brand { color:#fff; font-weight:700; font-size:1.3rem; }
     .btn-light { background:#fff; color:#1f2a36; border:none; font-weight:600; padding:5px 10px; cursor:pointer; }
-    .cart-badge { background:#e63946; color:#fff; border-radius:50%; padding:2px 8px; font-size:0.8rem; margin-left:5px; }
+    .cart-badge { background:#e63946; color:#fff; border-radius:50%; padding:3px 8px; font-size:0.8rem; }
+
     .hero-section { background: linear-gradient(90deg, #4a90e2, #8e44ad); color:#fff; text-align:center; padding:80px 20px; }
-    .hero-section h1 { font-size:2.5rem; margin-bottom:10px; }
-    .hero-section p { font-size:1rem; opacity:0.9; }
-    .products-section { background:#f8f9fa; padding:40px 20px; text-align:center; }
-    .products-section h2 { color:#333; margin-bottom:30px; }
-    .product-card { display:inline-block; width:300px; margin:15px; background:#fff; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,0.1); padding:15px; vertical-align:top; }
-    .product-card h3 { margin-bottom:10px; color:#444; }
+
+    .product-card {
+      background:#fff; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      padding:15px; margin-bottom:20px;
+    }
     .main-product-image { width:100%; border-radius:8px; }
     .thumbnail-images img { width:60px; height:60px; margin:5px; border-radius:5px; border:2px solid transparent; cursor:pointer; }
     .thumbnail-images img.selected { border-color:#4a90e2; }
-    .quantity-control { display:flex; justify-content:center; align-items:center; gap:10px; margin:15px 0; }
-    .quantity-btn { background:#4a90e2; color:#fff; border:none; padding:5px 10px; cursor:pointer; border-radius:4px; }
+
+    .quantity-btn { background:#4a90e2; color:#fff; padding:5px 15px; border:none; border-radius:4px; }
     .btn-add-cart { background:#8e44ad; color:#fff; border:none; padding:10px 20px; border-radius:5px; cursor:pointer; }
   </style>
 </head>
 <body>
-
-  <nav class="navbar-custom">
+<nav class="navbar navbar-custom d-flex justify-content-between align-items-center">
     <span class="navbar-brand">A$HTECH</span>
     <button class="btn-light">Cart <span class="cart-badge" id="cartCount">0</span></button>
   </nav>
@@ -37,149 +39,122 @@
     <p>Explore the latest gadgets!</p>
   </section>
 
-  <section class="products-section">
-    <h2>Our Products</h2>
+  <section class="products-section container text-center py-4">
 
-    <!-- PRODUCT: Smartphone -->
-    <div class="product-card">
-      <h3>Smartphone</h3>
-      <img id="phoneMain" class="main-product-image"
-           src="https://images.pexels.com/photos/6078122/pexels-photo-6078122.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
-           alt="Smartphone">
-      <div class="thumbnail-images">
-        <img src="https://images.pexels.com/photos/6078122/pexels-photo-6078122.jpeg?auto=compress&cs=tinysrgb&h=300&w=500"
-             onclick="changeImage(this,'phoneMain')" class="selected">
-        <img src="https://images.pexels.com/photos/4042801/pexels-photo-4042801.jpeg?auto=compress&cs=tinysrgb&h=300&w=500"
-             onclick="changeImage(this,'phoneMain')">
-        <img src="https://images.pexels.com/photos/4042804/pexels-photo-4042804.jpeg?auto=compress&cs=tinysrgb&h=300&w=500"
-             onclick="changeImage(this,'phoneMain')">
+    <h2 class="mb-4">Our Products</h2>
+
+    <div class="row justify-content-center">
+
+      <div class="col-md-4">
+        <div class="product-card">
+          <h3>Smartphone</h3>
+
+          <img id="phoneMain" class="main-product-image"
+               src="https://images.pexels.com/photos/6078122/pexels-photo-6078122.jpeg">
+
+          <div class="thumbnail-images">
+            <img class="selected"
+                 src="https://images.pexels.com/photos/6078122/pexels-photo-6078122.jpeg"
+                 onclick="changeImage(this,'phoneMain')">
+            <img src="https://images.pexels.com/photos/4042801/pexels-photo-4042801.jpeg"
+                 onclick="changeImage(this,'phoneMain')">
+            <img src="https://images.pexels.com/photos/4042804/pexels-photo-4042804.jpeg"
+                 onclick="changeImage(this,'phoneMain')">
+          </div>
+
+          <div class="d-flex justify-content-center gap-3 my-2">
+            <button class="quantity-btn" onclick="decreaseQuantity('phone')">-</button>
+            <span id="phoneQty">1</span>
+            <button class="quantity-btn" onclick="increaseQuantity('phone')">+</button>
+          </div>
+
+          <button class="btn-add-cart w-100" onclick="addToCart('phone')">Add to Cart</button>
+        </div>
       </div>
-      <div class="quantity-control">
-        <button class="quantity-btn" onclick="decreaseQuantity('phone')">-</button>
-        <span id="phoneQty">1</span>
-        <button class="quantity-btn" onclick="increaseQuantity('phone')">+</button>
+
+      <div class="col-md-4">
+        <div class="product-card">
+          <h3>Laptop</h3>
+
+          <img id="laptopMain" class="main-product-image"
+               src="https://c.pxhere.com/photos/5f/7e/apple_computer_notebook_technology_laptop_screen_electronics_publicdomain-103006.jpg!d">
+
+          <div class="thumbnail-images">
+            <img class="selected"
+                 src="https://c.pxhere.com/photos/5f/7e/apple_computer_notebook_technology_laptop_screen_electronics_publicdomain-103006.jpg!d"
+                 onclick="changeImage(this,'laptopMain')">
+            <img src="https://c.pxhere.com/photos/61/61/technology_computer_workdesk_home_office_laptop-794069.jpg!d"
+                 onclick="changeImage(this,'laptopMain')">
+            <img src="https://c.pxhere.com/photos/c2/ca/music_on_your_smartphone_spotify_music_service_music_online_listening_to_music_smartphone_headphones_laptop-349089.jpg!d"
+                 onclick="changeImage(this,'laptopMain')">
+          </div>
+
+          <div class="d-flex justify-content-center gap-3 my-2">
+            <button class="quantity-btn" onclick="decreaseQuantity('laptop')">-</button>
+            <span id="laptopQty">1</span>
+            <button class="quantity-btn" onclick="increaseQuantity('laptop')">+</button>
+          </div>
+
+          <button class="btn-add-cart w-100" onclick="addToCart('laptop')">Add to Cart</button>
+        </div>
       </div>
-      <button class="btn-add-cart" onclick="addToCart('phone')">Add to Cart</button>
+
+      <div class="col-md-4">
+        <div class="product-card">
+          <h3>Tablet</h3>
+
+          <img id="tabletMain" class="main-product-image"
+               src="https://images.pexels.com/photos/844225/pexels-photo-844225.jpeg">
+
+          <div class="thumbnail-images">
+            <img class="selected"
+                 src="https://images.pexels.com/photos/844225/pexels-photo-844225.jpeg"
+                 onclick="changeImage(this,'tabletMain')">
+            <img src="https://images.pexels.com/photos/265128/pexels-photo-265128.jpeg"
+                 onclick="changeImage(this,'tabletMain')">
+            <img src="https://images.pexels.com/photos/733856/pexels-photo-733856.jpeg"
+                 onclick="changeImage(this,'tabletMain')">
+          </div>
+
+          <div class="d-flex justify-content-center gap-3 my-2">
+            <button class="quantity-btn" onclick="decreaseQuantity('tablet')">-</button>
+            <span id="tabletQty">1</span>
+            <button class="quantity-btn" onclick="increaseQuantity('tablet')">+</button>
+          </div>
+
+          <button class="btn-add-cart w-100" onclick="addToCart('tablet')">Add to Cart</button>
+        </div>
+      </div>
+
     </div>
-
-    <!-- PRODUCT: Laptop -->
-    <div class="product-card">
-      <h3>Laptop</h3>
-      <img id="laptopMain" class="main-product-image"
-           src="https://c.pxhere.com/photos/5f/7e/apple_computer_notebook_technology_laptop_screen_electronics_publicdomain-103006.jpg!d"
-           alt="Laptop">
-      <div class="thumbnail-images">
-        <img src="https://c.pxhere.com/photos/5f/7e/apple_computer_notebook_technology_laptop_screen_electronics_publicdomain-103006.jpg!d"
-             onclick="changeImage(this,'laptopMain')" class="selected">
-        <img src="https://c.pxhere.com/photos/61/61/technology_computer_workdesk_home_office_laptop-794069.jpg!d"
-             onclick="changeImage(this,'laptopMain')">
-        <img src="https://c.pxhere.com/photos/c2/ca/music_on_your_smartphone_spotify_music_service_music_online_listening_to_music_smartphone_headphones_laptop-349089.jpg!d"
-             onclick="changeImage(this,'laptopMain')">
-      </div>
-      <div class="quantity-control">
-        <button class="quantity-btn" onclick="decreaseQuantity('laptop')">-</button>
-        <span id="laptopQty">1</span>
-        <button class="quantity-btn" onclick="increaseQuantity('laptop')">+</button>
-      </div>
-      <button class="btn-add-cart" onclick="addToCart('laptop')">Add to Cart</button>
-    </div>
-
-    <!-- PRODUCT: Tablet -->
-    <div class="product-card">
-      <h3>Tablet</h3>
-      <img id="tabletMain" class="main-product-image"
-           src="https://images.pexels.com/photos/844225/pexels-photo-844225.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
-           alt="Tablet">
-      <div class="thumbnail-images">
-        <img src="https://images.pexels.com/photos/844225/pexels-photo-844225.jpeg?auto=compress&cs=tinysrgb&h=300&w=500"
-             onclick="changeImage(this,'tabletMain')" class="selected">
-        <img src="https://images.pexels.com/photos/265128/pexels-photo-265128.jpeg?auto=compress&cs=tinysrgb&h=300&w=500"
-             onclick="changeImage(this,'tabletMain')">
-        <img src="https://images.pexels.com/photos/733856/pexels-photo-733856.jpeg?auto=compress&cs=tinysrgb&h=300&w=500"
-             onclick="changeImage(this,'tabletMain')">
-      </div>
-      <div class="quantity-control">
-        <button class="quantity-btn" onclick="decreaseQuantity('tablet')">-</button>
-        <span id="tabletQty">1</span>
-        <button class="quantity-btn" onclick="increaseQuantity('tablet')">+</button>
-      </div>
-      <button class="btn-add-cart" onclick="addToCart('tablet')">Add to Cart</button>
-    </div>
-
-    <!-- PRODUCT: Headphones -->
-    <div class="product-card">
-      <h3>Headphones</h3>
-      <img id="headphoneMain" class="main-product-image"
-     src="https://images.pexels.com/photos/374870/pexels-photo-374870.jpeg"
-     alt="Headphones">
-
-<div class="thumbnail-images">
-  <img src="https://images.pexels.com/photos/374870/pexels-photo-374870.jpeg"
-       alt="Headphones Front View"
-       onclick="changeImage(this, 'headphoneMain')" class="selected">
-  <img src="https://images.pexels.com/photos/6302/pexels-photo-6302.jpeg"
-       alt="Headphones Side View"
-       onclick="changeImage(this, 'headphoneMain')">
-  <img src="https://images.pexels.com/photos/6320/pexels-photo-6320.jpeg"
-       alt="Headphones Alternate View"
-       onclick="changeImage(this, 'headphoneMain')">
-</div>
-      <div class="quantity-control">
-        <button class="quantity-btn" onclick="decreaseQuantity('headphone')">-</button>
-        <span id="headphoneQty">1</span>
-        <button class="quantity-btn" onclick="increaseQuantity('headphone')">+</button>
-      </div>
-      <button class="btn-add-cart" onclick="addToCart('headphone')">Add to Cart</button>
-    </div>
-
-    <!-- PRODUCT: Camera -->
-    <div class="product-card">
-      <h3>Camera</h3>
-      <img id="cameraMain" class="main-product-image"
-           src="https://c.pxhere.com/photos/8e/48/dslr_camera_lens_photography_equipment_photo-848622.jpg!d"
-           alt="Camera">
-      <div class="thumbnail-images">
-        <img src="https://c.pxhere.com/photos/8e/48/dslr_camera_lens_photography_equipment_photo-848622.jpg!d"
-             onclick="changeImage(this,'cameraMain')" class="selected">
-        <img src="https://c.pxhere.com/photos/3a/24/audio_photography_camera_mirrorless_equipment-1327147.jpg!d"
-             onclick="changeImage(this,'cameraMain')">
-        <img src="https://c.pxhere.com/photos/18/63/camera_lens_photography_art_equipment_dslr-586348.jpg!d"
-             onclick="changeImage(this,'cameraMain')">
-      </div>
-      <div class="quantity-control">
-        <button class="quantity-btn" onclick="decreaseQuantity('camera')">-</button>
-        <span id="cameraQty">1</span>
-        <button class="quantity-btn" onclick="increaseQuantity('camera')">+</button>
-      </div>
-      <button class="btn-add-cart" onclick="addToCart('camera')">Add to Cart</button>
-    </div>
-
   </section>
 
   <script>
+    const qty = { phone:1, laptop:1, tablet:1 };
+
     function changeImage(imgEl, mainId) {
-      document.getElementById(mainId).src = imgEl.src;
-      imgEl.parentElement.querySelectorAll('img').forEach(i => i.classList.remove('selected'));
-      imgEl.classList.add('selected');
+      $("#" + mainId).attr("src", imgEl.src);
+      $(imgEl).addClass("selected").siblings().removeClass("selected");
     }
 
-    const qty = { phone:1, laptop:1, tablet:1, headphone:1, camera:1 };
-
-    function increaseQuantity(p) {
-      qty[p]++;
-      document.getElementById(p + 'Qty').textContent = qty[p];
+    function increaseQuantity(product) {
+      qty[product]++;
+      $("#" + product + "Qty").text(qty[product]);
     }
 
-    function decreaseQuantity(p) {
-      if(qty[p] > 1) { qty[p]--; document.getElementById(p + 'Qty').textContent = qty[p]; }
+    function decreaseQuantity(product) {
+      if (qty[product] > 1) qty[product]--;
+      $("#" + product + "Qty").text(qty[product]);
     }
 
-    function addToCart(p) {
-      const cart = document.getElementById('cartCount');
-      cart.textContent = parseInt(cart.textContent) + qty[p];
-      alert(qty[p] + ' item(s) added to cart!');
+    function addToCart(product) {
+      let cartCount = parseInt($("#cartCount").text());
+      cartCount += qty[product];
+
+      $("#cartCount").text(cartCount);
+
+      alert(qty[product] + " item(s) added to cart!");
     }
   </script>
-
 </body>
 </html>
